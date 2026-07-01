@@ -85,6 +85,15 @@ export default function IntegrationsSection() {
       </p>
 
       <div className="relative -mt-4" style={{ width: 900, height: 520 }}>
+
+        {/* Figma: ambient blue glow behind diagram */}
+        <div className="pointer-events-none absolute" style={{
+          width: 560, height: 400, left: '50%', top: '50%',
+          transform: 'translate(-50%, -50%)',
+          background: 'radial-gradient(ellipse at center, rgba(26,90,255,0.14) 0%, rgba(20,60,200,0.06) 50%, transparent 72%)',
+          filter: 'blur(70px)', zIndex: 0,
+        }} />
+
         <svg className="absolute inset-0" width="900" height="520" style={{ overflow: 'visible' }}>
 
           {/* ══ RIGHT SIDE ══ */}
@@ -147,7 +156,7 @@ export default function IntegrationsSection() {
           borderRadius: '50%',
           background: '#0d1a30',
           border: '1px solid rgba(255,255,255,0.2)',
-          boxShadow: '0 0 40px 10px rgba(26,111,255,0.18)',
+          boxShadow: '0 0 70px 24px rgba(26,111,255,0.32)',
           display: 'flex', alignItems: 'center', justifyContent: 'center',
         }}>
           <img src="/images/icons/cloud-icon.png" alt="Cloudnosys" style={{ width: 83, height: 67 }} />
@@ -161,14 +170,31 @@ export default function IntegrationsSection() {
         ))}
       </div>
 
-      <div className="flex flex-col items-center text-center mt-20">
-        <h2 className="HeroHeading text-center">
+      <div className="relative flex flex-col items-center text-center mt-20 w-full overflow-hidden" style={{ paddingBottom: 80 }}>
+
+        {/* Figma: massive cyan blob behind bottom CTA */}
+        <div className="pointer-events-none absolute inset-0" style={{ zIndex: 0 }}>
+          <div style={{
+            position: 'absolute', width: 900, height: 650, left: '50%', top: '50%',
+            transform: 'translate(-55%, -45%)',
+            background: 'radial-gradient(ellipse at 42% 48%, rgba(0,218,255,0.62) 0%, rgba(0,190,245,0.42) 28%, rgba(0,160,230,0.2) 55%, transparent 78%)',
+            filter: 'blur(72px)',
+          }} />
+          <div style={{
+            position: 'absolute', width: 700, height: 500, left: '50%', top: '50%',
+            transform: 'translate(-30%, -55%)',
+            background: 'radial-gradient(ellipse at 55% 40%, rgba(0,200,255,0.45) 0%, rgba(0,170,240,0.25) 40%, transparent 72%)',
+            filter: 'blur(80px)',
+          }} />
+        </div>
+
+        <h2 className="HeroHeading text-center relative" style={{ zIndex: 1 }}>
           <AnimatedGradientText speed={1} style={{ backgroundImage: "linear-gradient(263.99deg, #0C0C0C -5.95%, #FFFFFF 24.91%, #919191 47.69%, #FFFFFF 71.93%, #0C0C0C 107.2%)", backgroundSize: "300% 100%" }}>
             Secure Your Cloud<br />
             <span>Start Free Today</span>
           </AnimatedGradientText>
         </h2>
-        <p className="label mt-4 text-center">
+        <p className="label mt-4 text-center relative" style={{ zIndex: 1 }}>
           Experience full access to Cloudnosys for 14 days.
         </p>
       </div>

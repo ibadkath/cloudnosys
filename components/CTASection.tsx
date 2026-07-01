@@ -69,6 +69,14 @@ export default function CTASection() {
   return (
     <section className="w-full relative flex flex-col items-center justify-center py-28 overflow-hidden">
 
+      {/* Figma: teal center glow */}
+      <div className="pointer-events-none absolute" style={{
+        width: 700, height: 420, left: '50%', top: '50%',
+        transform: 'translate(-50%, -50%)',
+        background: 'radial-gradient(ellipse at center, rgba(0,220,160,0.16) 0%, rgba(0,200,180,0.07) 50%, transparent 72%)',
+        filter: 'blur(65px)', zIndex: 0,
+      }} />
+
       <svg
         className="absolute inset-0 w-full h-full pointer-events-none"
         viewBox="0 0 1440 450"

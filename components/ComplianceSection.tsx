@@ -54,8 +54,25 @@ export default function ComplianceSection() {
     >
 
       {/* Left — compliance dashboard image + floating badges */}
-      <div className="flex-1 flex items-center justify-center">
+      <div className="flex-1 flex items-center justify-center overflow-visible">
         <div className="relative">
+
+          {/* Figma: blue concentric ring glow centered on dashboard */}
+          <svg className="pointer-events-none absolute" style={{ left: '50%', top: '50%', transform: 'translate(-50%, -50%)', zIndex: 0 }} width="900" height="900" viewBox="0 0 900 900">
+            <defs>
+              <radialGradient id="ringGlow" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stopColor="rgba(20,90,255,0.22)" />
+                <stop offset="60%" stopColor="rgba(20,90,255,0.06)" />
+                <stop offset="100%" stopColor="rgba(20,90,255,0)" />
+              </radialGradient>
+            </defs>
+            <circle cx="450" cy="450" r="445" fill="url(#ringGlow)" />
+            {([68, 130, 192, 256, 318, 380, 430] as const).map((r, i) => (
+              <circle key={i} cx="450" cy="450" r={r} fill="none"
+                stroke={`rgba(40,110,255,${Math.max(0.04, 0.42 - i * 0.055)})`}
+                strokeWidth="1.5" />
+            ))}
+          </svg>
 
           {/* Main dashboard image */}
           {/* eslint-disable-next-line @next/next/no-img-element */}
