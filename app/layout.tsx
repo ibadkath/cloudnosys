@@ -1,6 +1,11 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+import { cn } from "@/lib/utils";
+
+const jetbrainsMono = JetBrains_Mono({subsets:['latin'],variable:'--font-mono'});
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -25,9 +30,47 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={cn("antialiased", geistSans.variable, geistMono.variable, "font-mono", jetbrainsMono.variable)}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-screen flex flex-col">
+        {/* Right glow */}
+        <div
+          className="pointer-events-none fixed"
+          style={{
+            top: 60,
+            right: -30,
+            width: 190.5,
+            height: 316,
+            borderRadius: "50%",
+            background: "radial-gradient(ellipse at center, #6797CE 0%, rgba(103,151,206,0.3) 50%, transparent 100%)",
+            transform: "rotate(9.82deg)",
+            filter: "blur(375.7px)",
+            opacity: 0.7,
+            zIndex: 1,
+          }}
+        />
+        {/* Left glow — covers hero text and button */}
+        <div
+          className="pointer-events-none fixed"
+          style={{
+            top: 200,
+            left: -60,
+            width: 226,
+            height: 375,
+            borderRadius: "50%",
+            background: "radial-gradient(ellipse at center, #677FCE 0%, rgba(103,127,206,0.3) 50%, transparent 100%)",
+            transform: "rotate(9.82deg)",
+            filter: "blur(375.7px)",
+            opacity: 0.6,
+            zIndex: 1,
+          }}
+        />
+        <Navbar />
+        <div className="flex flex-col flex-1 pt-20">
+          {children}
+        </div>
+        <Footer />
+      </body>
     </html>
   );
 }
