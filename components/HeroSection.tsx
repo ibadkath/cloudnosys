@@ -19,6 +19,20 @@ export default function HeroSection() {
           zIndex: 0,
         }}
       />
+      {/* Left-side background glow */}
+      <div
+        className="pointer-events-none absolute"
+        style={{
+          top: 60,
+          left: -180,
+          width: 600,
+          height: 600,
+          borderRadius: "50%",
+          background: "radial-gradient(circle, rgba(60,100,255,0.22) 0%, rgba(80,120,240,0.09) 45%, transparent 70%)",
+          filter: "blur(80px)",
+          zIndex: 0,
+        }}
+      />
       <HeroVisual />
       <div className="relative z-10 flex flex-col gap-6 px-10 max-w-155 min-h-[calc(100vh-80px)] justify-center">
         <h1 className="HeroHeading">
