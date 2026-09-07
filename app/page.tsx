@@ -7,9 +7,15 @@ import CloudIQSection from "@/components/CloudIQSection";
 import ComplianceSection from "@/components/ComplianceSection";
 import IntegrationsSection from "@/components/IntegrationsSection";
 import BlogsSection from "@/components/BlogsSection";
-export default function Home() {
+import ScrollToBlogsOnFlag from "@/components/ScrollToBlogsOnFlag";
+import { getBlogPosts } from "@/lib/strapi";
+
+export default async function Home() {
+  const posts = await getBlogPosts();
+
   return (
     <main className="flex flex-1 flex-col">
+      <ScrollToBlogsOnFlag />
       <HeroSection />
       <InventorySection/>
       <TrustedSection />
@@ -18,7 +24,7 @@ export default function Home() {
       <CloudIQSection />
       <ComplianceSection />
       <IntegrationsSection />
-      <BlogsSection />
+      <BlogsSection blogs={posts} />
     </main>
   );
 }

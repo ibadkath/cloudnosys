@@ -1,4 +1,4 @@
-﻿export default function HeroVisual() {
+﻿export default function HeroVisual({ warningScale = 1, badgeScale = 1 }: { warningScale?: number; badgeScale?: number } = {}) {
   const HUB    = { cx: 870,  cy: 400, r: 60 };
   const AWS    = { cx: 1080, cy: 255, r: 36 };
   const GCP    = { cx: 1092, cy: 495, r: 36 };
@@ -8,27 +8,33 @@
   const KEY    = { cx: 418,  cy: 548, r: 32 };
 
   // Warning icon positions: midpoints of each spoke that has icons on both ends
-  const WARN2 = { cx: 945, cy: 472, r: 10 }; // midpoint of HUB->GCP diagonal
-  const WARN3 = { cx: 736, cy: 459, r: 10 }; // midpoint of HUB->AZURE diagonal
-  const WARN4 = { cx: 1210, cy: 188, r: 10, bx: 1210, by: 215 }; // AWS->CHIP, branched up
-  const WARN7 = { cx: 1400, cy: 240, r: 10 }; // CHIP->page-edge, branched down
-  const WARN5 = { cx: 1220, cy: 553, r: 10 }; // GCP->LOCK, on horizontal segment
-  const WARN6 = { cx: 490,  cy: 540, r: 10 }; // AZURE->KEY, near KEY on second horizontal
+  const WARN_R = 10 * warningScale;
+  const WARN2 = { cx: 945, cy: 472, r: WARN_R }; // midpoint of HUB->GCP diagonal
+  const WARN3 = { cx: 736, cy: 459, r: WARN_R }; // midpoint of HUB->AZURE diagonal
+  const WARN4 = { cx: 1210, cy: 188, r: WARN_R, bx: 1210, by: 215 }; // AWS->CHIP, branched up
+  const WARN7 = { cx: 1400, cy: 240, r: WARN_R }; // CHIP->page-edge, branched down
+  const WARN5 = { cx: 1220, cy: 553, r: WARN_R }; // GCP->LOCK, on horizontal segment
+  const WARN6 = { cx: 490,  cy: 540, r: WARN_R }; // AZURE->KEY, near KEY on second horizontal
+  const WARN_ICON = 14 * warningScale;
+  const WARN_HALF = WARN_ICON / 2;
 
   // Three icons below GCP in a horizontal row
+  const BADGE_R = 14 * badgeScale;
+  const BADGE_ICON = 16 * badgeScale;
+  const BADGE_HALF = BADGE_ICON / 2;
   const BELOW_GCP_Y = GCP.cy + GCP.r + 12 + 14 + 20;
-  const SHIELD1 = { cx: GCP.cx - 35, cy: BELOW_GCP_Y, r: 14 };
-  const DOC1    = { cx: GCP.cx,      cy: BELOW_GCP_Y, r: 14 };
-  const BUG1    = { cx: GCP.cx + 35, cy: BELOW_GCP_Y, r: 14 };
+  const SHIELD1 = { cx: GCP.cx - 35, cy: BELOW_GCP_Y, r: BADGE_R };
+  const DOC1    = { cx: GCP.cx,      cy: BELOW_GCP_Y, r: BADGE_R };
+  const BUG1    = { cx: GCP.cx + 35, cy: BELOW_GCP_Y, r: BADGE_R };
 
   // Shield below AZURE
   const BELOW_AZURE_Y = AZURE.cy + AZURE.r + 12 + 14 + 6;
-  const SHIELD_AZURE = { cx: AZURE.cx, cy: BELOW_AZURE_Y, r: 14 };
+  const SHIELD_AZURE = { cx: AZURE.cx, cy: BELOW_AZURE_Y, r: BADGE_R };
 
   // Bug + Shield below AWS
   const BELOW_AWS_Y = AWS.cy + AWS.r + 12 + 14 + 8;
-  const BUG_AWS    = { cx: AWS.cx - 18, cy: BELOW_AWS_Y, r: 14 };
-  const SHIELD_AWS = { cx: AWS.cx + 18, cy: BELOW_AWS_Y, r: 14 };
+  const BUG_AWS    = { cx: AWS.cx - 18, cy: BELOW_AWS_Y, r: BADGE_R };
+  const SHIELD_AWS = { cx: AWS.cx + 18, cy: BELOW_AWS_Y, r: BADGE_R };
 
   return (
     <svg
@@ -113,48 +119,48 @@
 
 {/* Warning 2 — HUB->GCP */}
       <circle cx={WARN2.cx} cy={WARN2.cy} r={WARN2.r} fill="#1C2A42" fillOpacity="0.37" stroke="url(#nodeGrad)" strokeWidth="0.5" />
-      <image href="/images/icons/warning.png" x={WARN2.cx - 7} y={WARN2.cy - 7} width="14" height="14" />
+      <image href="/images/icons/warning.png" x={WARN2.cx - WARN_HALF} y={WARN2.cy - WARN_HALF} width={WARN_ICON} height={WARN_ICON} />
 
       {/* Warning 3 — HUB->AZURE */}
       <circle cx={WARN3.cx} cy={WARN3.cy} r={WARN3.r} fill="#1C2A42" fillOpacity="0.37" stroke="url(#nodeGrad)" strokeWidth="0.5" />
-      <image href="/images/icons/warning.png" x={WARN3.cx - 7} y={WARN3.cy - 7} width="14" height="14" />
+      <image href="/images/icons/warning.png" x={WARN3.cx - WARN_HALF} y={WARN3.cy - WARN_HALF} width={WARN_ICON} height={WARN_ICON} />
 
       {/* Warning 4 — AWS->CHIP, branched up */}
       <circle cx={WARN4.cx} cy={WARN4.cy} r={WARN4.r} fill="#1C2A42" fillOpacity="0.37" stroke="url(#nodeGrad)" strokeWidth="0.5" />
-      <image href="/images/icons/warning.png" x={WARN4.cx - 7} y={WARN4.cy - 7} width="14" height="14" />
+      <image href="/images/icons/warning.png" x={WARN4.cx - WARN_HALF} y={WARN4.cy - WARN_HALF} width={WARN_ICON} height={WARN_ICON} />
 
       {/* Warning 7 — CHIP->page-edge */}
       <circle cx={WARN7.cx} cy={WARN7.cy} r={WARN7.r} fill="#1C2A42" fillOpacity="0.37" stroke="url(#nodeGrad)" strokeWidth="0.5" />
-      <image href="/images/icons/warning.png" x={WARN7.cx - 7} y={WARN7.cy - 7} width="14" height="14" />
+      <image href="/images/icons/warning.png" x={WARN7.cx - WARN_HALF} y={WARN7.cy - WARN_HALF} width={WARN_ICON} height={WARN_ICON} />
 
       {/* Warning 5 — GCP->LOCK */}
       <circle cx={WARN5.cx} cy={WARN5.cy} r={WARN5.r} fill="#1C2A42" fillOpacity="0.37" stroke="url(#nodeGrad)" strokeWidth="0.5" />
-      <image href="/images/icons/warning.png" x={WARN5.cx - 7} y={WARN5.cy - 7} width="14" height="14" />
+      <image href="/images/icons/warning.png" x={WARN5.cx - WARN_HALF} y={WARN5.cy - WARN_HALF} width={WARN_ICON} height={WARN_ICON} />
 
       {/* Warning 6 — AZURE->KEY */}
       <circle cx={WARN6.cx} cy={WARN6.cy} r={WARN6.r} fill="#1C2A42" fillOpacity="0.37" stroke="url(#nodeGrad)" strokeWidth="0.5" />
-      <image href="/images/icons/warning.png" x={WARN6.cx - 7} y={WARN6.cy - 7} width="14" height="14" />
+      <image href="/images/icons/warning.png" x={WARN6.cx - WARN_HALF} y={WARN6.cy - WARN_HALF} width={WARN_ICON} height={WARN_ICON} />
 
       {/* Three icons below GCP — bug (left), shield (middle), document (right) */}
       <circle cx={SHIELD1.cx} cy={SHIELD1.cy} r={SHIELD1.r} fill="#1C2A42" fillOpacity="0.37" stroke="url(#nodeGrad)" strokeWidth="0.5" />
-      <image href="/images/icons/bug.png" x={SHIELD1.cx - 8} y={SHIELD1.cy - 8} width="16" height="16" style={{ filter: 'brightness(0) invert(1)' }} />
+      <image href="/images/icons/bug.png" x={SHIELD1.cx - BADGE_HALF} y={SHIELD1.cy - BADGE_HALF} width={BADGE_ICON} height={BADGE_ICON} style={{ filter: 'brightness(0) invert(1)' }} />
 
       <circle cx={DOC1.cx} cy={DOC1.cy} r={DOC1.r} fill="#1C2A42" fillOpacity="0.37" stroke="url(#nodeGrad)" strokeWidth="0.5" />
-      <image href="/images/icons/shield.png" x={DOC1.cx - 8} y={DOC1.cy - 8} width="16" height="16" style={{ filter: 'brightness(0) invert(1)' }} />
+      <image href="/images/icons/shield.png" x={DOC1.cx - BADGE_HALF} y={DOC1.cy - BADGE_HALF} width={BADGE_ICON} height={BADGE_ICON} style={{ filter: 'brightness(0) invert(1)' }} />
 
       <circle cx={BUG1.cx} cy={BUG1.cy} r={BUG1.r} fill="#1C2A42" fillOpacity="0.37" stroke="url(#nodeGrad)" strokeWidth="0.5" />
-      <image href="/images/icons/document.png" x={BUG1.cx - 8} y={BUG1.cy - 8} width="16" height="16" style={{ filter: 'brightness(0) invert(1)' }} />
+      <image href="/images/icons/document.png" x={BUG1.cx - BADGE_HALF} y={BUG1.cy - BADGE_HALF} width={BADGE_ICON} height={BADGE_ICON} style={{ filter: 'brightness(0) invert(1)' }} />
 
       {/* Shield below AZURE */}
       <circle cx={SHIELD_AZURE.cx} cy={SHIELD_AZURE.cy} r={SHIELD_AZURE.r} fill="#1C2A42" fillOpacity="0.37" stroke="url(#nodeGrad)" strokeWidth="0.5" />
-      <image href="/images/icons/shield.png" x={SHIELD_AZURE.cx - 8} y={SHIELD_AZURE.cy - 8} width="16" height="16" style={{ filter: 'brightness(0) invert(1)' }} />
+      <image href="/images/icons/shield.png" x={SHIELD_AZURE.cx - BADGE_HALF} y={SHIELD_AZURE.cy - BADGE_HALF} width={BADGE_ICON} height={BADGE_ICON} style={{ filter: 'brightness(0) invert(1)' }} />
 
       {/* Bug + Shield below AWS */}
       <circle cx={BUG_AWS.cx} cy={BUG_AWS.cy} r={BUG_AWS.r} fill="#1C2A42" fillOpacity="0.37" stroke="url(#nodeGrad)" strokeWidth="0.5" />
-      <image href="/images/icons/bug.png" x={BUG_AWS.cx - 8} y={BUG_AWS.cy - 8} width="16" height="16" style={{ filter: 'brightness(0) invert(1)' }} />
+      <image href="/images/icons/bug.png" x={BUG_AWS.cx - BADGE_HALF} y={BUG_AWS.cy - BADGE_HALF} width={BADGE_ICON} height={BADGE_ICON} style={{ filter: 'brightness(0) invert(1)' }} />
 
       <circle cx={SHIELD_AWS.cx} cy={SHIELD_AWS.cy} r={SHIELD_AWS.r} fill="#1C2A42" fillOpacity="0.37" stroke="url(#nodeGrad)" strokeWidth="0.5" />
-      <image href="/images/icons/shield.png" x={SHIELD_AWS.cx - 8} y={SHIELD_AWS.cy - 8} width="16" height="16" style={{ filter: 'brightness(0) invert(1)' }} />
+      <image href="/images/icons/shield.png" x={SHIELD_AWS.cx - BADGE_HALF} y={SHIELD_AWS.cy - BADGE_HALF} width={BADGE_ICON} height={BADGE_ICON} style={{ filter: 'brightness(0) invert(1)' }} />
 
     </svg>
   );
@@ -175,7 +181,7 @@ function FourLines({
   const py = nx;
   const offsets = [-1.5 * gap, -0.5 * gap, 0.5 * gap, 1.5 * gap];
   return (
-    <>
+    < >
       {offsets.map((o, i) => {
         const d1 = r1 > 0 ? Math.sqrt(Math.max(0, r1 * r1 - o * o)) : 0;
         const d2 = r2 > 0 ? Math.sqrt(Math.max(0, r2 * r2 - o * o)) : 0;

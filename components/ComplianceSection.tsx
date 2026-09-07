@@ -1,43 +1,42 @@
-import { AnimatedGradientText } from "./ui/animated-gradient-text";
+'use client';
+import ShinyText from "./ShinyText";
+import Carousel from "./Carousel";
+import { useMeasuredWidth } from "./useMeasuredWidth";
 
-function TestimonialCard() {
+const CARD_COUNT = 5;
+const CAROUSEL_ITEMS = Array.from({ length: CARD_COUNT }, (_, i) => ({ id: i }));
+
+function TestimonialCard({ fullWidth = false, width }: { fullWidth?: boolean; width?: number }) {
   return (
     <div style={{
-      width: 420,
-      height: 310,
+      width: fullWidth ? '100%' : (width ?? 420),
+      height: fullWidth ? undefined : 310,
+      minHeight: fullWidth ? 280 : undefined,
       flexShrink: 0,
-      background: '#0d1520',
-      border: '1px solid rgba(255,255,255,0.08)',
-      borderRadius: 16,
-      padding: '32px 20px 20px 20px',
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'flex-start',
-      gap: 14,
+      background: '#0d1520', border: '1px solid rgba(255,255,255,0.08)',
+      borderRadius: 16, padding: '32px 20px 20px',
+      display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 14,
+      boxSizing: 'border-box',
     }}>
       {/* Profile */}
       <div style={{ display: 'flex', alignItems: 'center', gap: 12, width: '100%' }}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="/images/home/compliance/image (2).png"
-          alt="CISO"
+          src="/images/home/compliance/image (2).png" alt="CISO"
           style={{ width: 44, height: 44, borderRadius: '50%', objectFit: 'cover', flexShrink: 0 }}
         />
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
           <p className="feature-card-heading" style={{ textAlign: 'left', margin: 0 }}>CISO</p>
-          <p className="feature-card-para" style={{ textAlign: 'left', margin: 0 }}>FintechCorp</p>
+          <p className="feature-card-para"    style={{ textAlign: 'left', margin: 0 }}>FintechCorp</p>
         </div>
       </div>
-
       {/* Divider */}
       <div style={{ width: '100%', height: 1, background: 'rgba(255,255,255,0.15)' }} />
-
-      {/* Review text */}
+      {/* Review */}
       <p className="review-card-para" style={{ textAlign: 'left', margin: 0, marginTop: 8 }}>
         Cloudnosys Gave Us Real-Time Visibility Into Our Cloud Posture.
         We Identified Critical Risks In Minutes&nbsp; Not Days
       </p>
-
       {/* Stars */}
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img src="/images/home/compliance/stars.png" alt="5 stars" style={{ height: 18, filter: 'brightness(0) invert(1)', marginTop: 8 }} />
@@ -46,139 +45,124 @@ function TestimonialCard() {
 }
 
 export default function ComplianceSection() {
+  const [mobileWrapperRef, mobileWidth] = useMeasuredWidth<HTMLDivElement>();
+
   return (
     <>
+    {/* ── Compliance info section ── */}
     <section
-      className="w-full flex items-center px-16 py-20 gap-20 mt-32"
-      style={{ backgroundColor: '#060606', color: '#ffffff' }}
+      className="w-full flex flex-col md:flex-row items-center px-6 md:px-16 py-12 md:py-20 gap-10 md:gap-20 mt-16 md:mt-32"
+      // style={{ backgroundColor: '#060606', color: '#ffffff' }}
     >
-
-      {/* Left — compliance dashboard image + floating badges */}
-      <div className="flex-1 flex items-center justify-center overflow-visible">
+      {/* Image — order-2 on mobile (shows after text) */}
+      <div className="flex-1 flex items-center justify-center overflow-visible order-2 md:order-1">
         <div className="relative">
-
-          {/* Figma: blue concentric ring glow centered on dashboard */}
-          <svg className="pointer-events-none absolute" style={{ left: '50%', top: '50%', transform: 'translate(-50%, -50%)', zIndex: 0 }} width="900" height="900" viewBox="0 0 900 900">
-            <defs>
-              <radialGradient id="ringGlow" cx="50%" cy="50%" r="50%">
-                <stop offset="0%" stopColor="rgba(20,90,255,0.22)" />
-                <stop offset="60%" stopColor="rgba(20,90,255,0.06)" />
-                <stop offset="100%" stopColor="rgba(20,90,255,0)" />
-              </radialGradient>
-            </defs>
-            <circle cx="450" cy="450" r="445" fill="url(#ringGlow)" />
-            {([68, 130, 192, 256, 318, 380, 430] as const).map((r, i) => (
-              <circle key={i} cx="450" cy="450" r={r} fill="none"
-                stroke={`rgba(40,110,255,${Math.max(0.04, 0.42 - i * 0.055)})`}
-                strokeWidth="1.5" />
-            ))}
-          </svg>
-
-          {/* Main dashboard image */}
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="/images/home/compliance/compliance.png"
-            alt="Compliance Dashboard"
-            style={{ width: '528px', height: '439px', maxWidth: 'none', display: 'block' }}
-          />
-
-          {/* CIS — top left */}
+          <img src="/images/home/compliance/compliance.png" alt="Compliance Dashboard"
+            style={{ width: '100%', maxWidth: '528px', height: 'auto', display: 'block' }} />
+          {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src="/images/home/compliance/Group 628802.png" alt="CIS"
+            className="compliance-badge compliance-badge-tl"
             style={{ position: 'absolute', width: 88, height: 88, top: -28, left: -55 }} />
-
-          {/* ISO 27001 — top right */}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src="/images/home/compliance/Group 628804.png" alt="ISO 27001"
+            className="compliance-badge compliance-badge-tr"
             style={{ position: 'absolute', width: 88, height: 88, top: -28, right: -55 }} />
-
-          {/* HIPAA — left middle */}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src="/images/home/compliance/Group 628806.png" alt="HIPAA"
+            className="compliance-badge compliance-badge-ml"
             style={{ position: 'absolute', width: 80, height: 80, top: '40%', left: -44, transform: 'translateY(-50%)' }} />
-
-          {/* FedRAMP — right middle */}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src="/images/home/compliance/Group 628803.png" alt="FedRAMP"
+            className="compliance-badge compliance-badge-mr"
             style={{ position: 'absolute', width: 80, height: 80, top: '40%', right: -44, transform: 'translateY(-50%)' }} />
-
-          {/* GDPR — bottom left */}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src="/images/home/compliance/Group 628805.png" alt="GDPR"
+            className="compliance-badge compliance-badge-bl"
             style={{ position: 'absolute', width: 80, height: 80, bottom: 70, left: -28 }} />
-
         </div>
       </div>
 
-      {/* Right — text */}
-      <div className="flex-1 flex flex-col">
-        <h2 className="HeroHeading">
-          <AnimatedGradientText speed={1} style={{ backgroundImage: "linear-gradient(263.99deg, #0C0C0C -5.95%, #FFFFFF 24.91%, #919191 47.69%, #FFFFFF 71.93%, #0C0C0C 107.2%)", backgroundSize: "300% 100%" }}>
-            Built-In<br />
-            Compliance<br />
-            Zero Guesswork
-          </AnimatedGradientText>
+      {/* Text — order-1 on mobile (shows first) */}
+      <div className="flex-1 flex flex-col order-1 md:order-2">
+        <h2 className="HeroHeading  max-w-75 sm:max-w-[76.5%]" style={{ fontWeight: 300 }}>
+          <ShinyText  text="Built-In" speed={3} /> <br className="hidden tb:block" />
+          <ShinyText text="Compliance" className="font-medium!" speed={3} /> <br className="hidden md:block" />
+          <ShinyText text="Zero Guesswork" speed={3} />
         </h2>
+        <div style={{ maxWidth: 500 }}>
+          <p className="label mt-6" style={{ color: '#FFFFFF' }}>
+            Stay ahead of audits with automated compliance<br className="hidden md:inline" /> tracking across major frameworks like
+          </p>
+          <p className="label mt-2" style={{ fontWeight: 700, color: '#FFFFFF' }}>
+            ISO 27001, SOC 2, GDPR, HIPAA, CIS, PCI-DS
+          </p>
 
-        <p className="label mt-6">
-          Stay ahead of audits with automated compliance tracking across major frameworks like
-        </p>
-
-        <p className="label mt-2" style={{ fontWeight: 700, color: '#ffffff' }}>
-          ISO 27001, SOC 2, GDPR, HIPAA, CIS, PCI-DS
-        </p>
-
-        <p className="label mt-5" style={{ fontWeight: 700, color: '#ffffff' }}>
-          From policy enforcement to pass-ready reports Cloudnosys does the heavy lifting.
-        </p>
+          <p className="label mt-5" style={{ fontWeight: 700, color: '#FFFFFF' }}>
+            From policy enforcement to pass-ready reports Cloudnosys does the heavy lifting.
+          </p>
+        </div>
       </div>
-
     </section>
 
-    {/* Trusted By section */}
-    <section
-      className="w-full flex flex-col items-center text-center pt-36 pb-20 overflow-hidden"
-      style={{ backgroundColor: '#060606', color: '#ffffff' }}
+    {/* ── Trusted By section ── */}
+    <section 
+      className="w-full flex flex-col items-center text-center pt-16 md:pt-36 pb-10 md:pb-20"
+      // style={{ backgroundColor: '#060606', color: '#ffffff' }}
     >
-      <h2 className="HeroHeading px-16">
-        <AnimatedGradientText speed={1} style={{ backgroundImage: "linear-gradient(263.99deg, #0C0C0C -5.95%, #FFFFFF 24.91%, #919191 47.69%, #FFFFFF 71.93%, #0C0C0C 107.2%)", backgroundSize: "300% 100%" }}>
-          Trusted By <span>Security</span><br />
-          <span>Teams</span> Around The World
-        </AnimatedGradientText>
+      <h2 className="HeroHeading mx-auto max-w-[360px] sm:max-w-[82%] tb:max-w-max px-4 md:px-16" style={{ fontWeight: 300 }}>
+        <ShinyText text="Trusted By" speed={3} />{' '}
+        <ShinyText text="Security" className="font-medium!" speed={3} />{' '}
+        <br className="hidden tb:block" />
+        <ShinyText text="Teams" className="font-medium!" speed={3} />{' '}
+        <ShinyText text="Around The World" speed={3} />
       </h2>
-      <p className="label mt-4 px-16" style={{ color: '#aaaaaa' }}>
+      <p className="label mt-4 px-16" style={{ color: '#FFFFFF' }}>
         Cloudnosys powers compliance and protection for teams of every size from startups to enterprise.
       </p>
 
-      {/* Testimonial cards — two marquee rows */}
-      <div className="w-full flex flex-col mt-20 relative" style={{ gap: 20 }}>
-
-        {/* Left fade */}
+      {/* Desktop: two infinite marquee rows */}
+      <div className="hidden md:flex w-full flex-col mt-20 relative overflow-hidden" style={{ gap: 20 }}>
         <div className="absolute left-0 top-0 bottom-0 pointer-events-none" style={{ width: 160, zIndex: 10, background: 'linear-gradient(to right, #070707, transparent)' }} />
-        {/* Right fade */}
         <div className="absolute right-0 top-0 bottom-0 pointer-events-none" style={{ width: 160, zIndex: 10, background: 'linear-gradient(to left, #070707, transparent)' }} />
-
-        {/* Row 1 — scrolls left */}
         <div style={{ overflow: 'hidden' }}>
-          <div style={{
-            display: 'flex',
-            gap: 20,
-            width: 'max-content',
-            animation: 'marquee-left 30s linear infinite',
-          }}>
+          <div style={{ display: 'flex', gap: 20, width: 'max-content', animation: 'marquee-left 30s linear infinite' }}>
             {[...Array(5)].map((_, i) => <TestimonialCard key={`r1a-${i}`} />)}
             {[...Array(5)].map((_, i) => <TestimonialCard key={`r1b-${i}`} />)}
           </div>
         </div>
-
-        {/* Row 2 — scrolls right */}
         <div style={{ overflow: 'hidden' }}>
-          <div style={{
-            display: 'flex',
-            gap: 20,
-            width: 'max-content',
-            animation: 'marquee-right 30s linear infinite',
-          }}>
+          <div style={{ display: 'flex', gap: 20, width: 'max-content', animation: 'marquee-right 30s linear infinite' }}>
             {[...Array(5)].map((_, i) => <TestimonialCard key={`r2a-${i}`} />)}
             {[...Array(5)].map((_, i) => <TestimonialCard key={`r2b-${i}`} />)}
           </div>
         </div>
+      </div>
 
+      {/* Tablet: horizontal marquee animation, ~2 cards visible, no dots */}
+      <div className="hidden tb:flex md:hidden w-full mt-10 relative overflow-hidden">
+        <div className="absolute left-0 top-0 bottom-0 pointer-events-none" style={{ width: 80, zIndex: 10, background: 'linear-gradient(to right, #070707, transparent)' }} />
+        <div className="absolute right-0 top-0 bottom-0 pointer-events-none" style={{ width: 80, zIndex: 10, background: 'linear-gradient(to left, #070707, transparent)' }} />
+        <div style={{ overflow: 'hidden', width: '100%' }}>
+          <div style={{ display: 'flex', gap: 16, width: 'max-content', animation: 'marquee-left 24s linear infinite' }}>
+            {[...Array(CARD_COUNT)].map((_, i) => <TestimonialCard key={`tba-${i}`} width={360} />)}
+            {[...Array(CARD_COUNT)].map((_, i) => <TestimonialCard key={`tbb-${i}`} width={360} />)}
+          </div>
+        </div>
+      </div>
+
+      {/* Mobile: scroll-snap carousel, one full-width card at a time */}
+      <div className="tb:hidden w-full mt-10 px-4" ref={mobileWrapperRef}>
+        {mobileWidth > 0 && (
+          <Carousel
+            items={CAROUSEL_ITEMS}
+            baseWidth={mobileWidth}
+            containerPadding={0}
+            frameless
+            dotGap={10}
+            renderItem={() => <TestimonialCard fullWidth />}
+          />
+        )}
       </div>
     </section>
     </>

@@ -3,26 +3,25 @@ import Image from "next/image";
 export default function CloudIQSection() {
   return (
     <>
-    <section className="w-full flex flex-col items-center py-52" style={{ backgroundColor: '#ffffff', color: '#060606', borderTopLeftRadius: 30, borderTopRightRadius: 30 }}>
+    <section className="w-full flex flex-col items-center py-52 px-16 cloudiq-section" style={{ backgroundColor: '#ffffff', color: '#060606', borderTopLeftRadius: 30, borderTopRightRadius: 30 }}>
 
-      <h2 className="HeroHeading text-center">
-        Meet CloudIQ<br />
-        Your AI Security Agent
+      <h2 className="HeroHeading text-center max-w-75 tb:max-w-max " style={{ fontWeight: 300}}>
+        <span className="">Meet <span style={{ fontWeight: 500 }}>CloudIQ</span></span>
+        <br className="hidden tb:block" /> <span className="whitespace-nowrap tb:whitespace-normal">Your</span> <span style={{ fontWeight: 500 }}>AI Security Agent</span>
       </h2>
 
-      <p className="label mt-4 text-center">
-        Whether you&apos;re in security, compliance, or ops our dashboards deliver tailored,<br />
-        real-time insights that cut through noise and drive action
+      <p className="label mt-4 text-center" style={{ color: '#060606' }}>
+        Whether you&apos;re in security, compliance, or ops our dashboards deliver tailored,<br className="hidden md:inline" /> real-time insights that cut through noise and drive action
       </p>
 
       <div className="mt-12 flex flex-col" style={{ gap: 23 }}>
 
         {/* Row 1 — two cards */}
-        <div className="flex" style={{ gap: 23 }}>
+        <div className="flex cloudiq-cards-row" style={{ gap: 23 }}>
 
           {/* Card 1 — Attack Path Analysis */}
           <div
-            className="rounded-2xl overflow-hidden flex flex-col"
+            className="rounded-2xl overflow-hidden flex flex-col cloudiq-card"
             style={{ width: 525, height: 451, background: '#070707', border: '1px solid rgba(255,255,255,0.08)' }}
           >
             <div className="relative flex-1 overflow-hidden flex justify-center">
@@ -48,7 +47,7 @@ export default function CloudIQSection() {
 
           {/* Card 2 — Compliance Score ×2 */}
           <div
-            className="rounded-2xl overflow-hidden flex flex-col"
+            className="rounded-2xl overflow-hidden flex flex-col cloudiq-card"
             style={{ width: 525, height: 451, background: '#070707', border: '1px solid rgba(255,255,255,0.08)' }}
           >
             <div className="relative flex-1 overflow-hidden flex flex-col items-center justify-start pt-10 gap-3">
@@ -82,7 +81,7 @@ export default function CloudIQSection() {
 
         {/* Row 2 — Threat Visualization */}
         <div
-          className="rounded-2xl overflow-hidden flex flex-col"
+          className="rounded-2xl overflow-hidden flex flex-col cloudiq-row2-card"
           style={{ width: 1073, height: 451, background: '#070707', border: '1px solid rgba(255,255,255,0.08)' }}
         >
           <div className="relative flex-1 overflow-hidden flex justify-center">
@@ -112,19 +111,19 @@ export default function CloudIQSection() {
 
     {/* ── Automation section ── */}
     <section
-      className="w-full flex items-start px-16 pt-20 pb-36 gap-16"
+      className="w-full flex justify-center pt-20 pb-36 cloudiq-auto-section"
       style={{ backgroundColor: '#ffffff', color: '#060606', borderBottomLeftRadius: 30, borderBottomRightRadius: 30 }}
     >
+      <div className="flex items-start gap-16 cloudiq-auto-inner" style={{ width: 1073 }}>
       {/* Left */}
-      <div className="flex flex-col" style={{ minWidth: 440, maxWidth: 440 }}>
-        <h2 className="HeroHeading">
-          Security That<br />
-          <span style={{ whiteSpace: 'nowrap' }}>
+      <div className="flex flex-col cloudiq-auto-left" style={{ minWidth: 440, maxWidth: 440 }}>
+        <h2 className="HeroHeading" style={{ fontWeight: 300 }}>
+          Security That<br className="hidden md:inline" /> <span style={{ whiteSpace: 'nowrap' }}>
             <span style={{ fontWeight: 500 }}>Acts</span> On Its{' '}
             <span style={{ fontWeight: 500 }}>Own</span>.
           </span>
         </h2>
-        <p className="label mt-4" style={{ color: '#555' }}>
+        <p className="label mt-4" style={{ color: '#060606' }}>
           Trigger fast, policy-based remediation using prebuilt workflows.
           Integrate with tools like JIRA, AWS GuardDuty, and GCP to automate
           your incident response.
@@ -141,19 +140,22 @@ export default function CloudIQSection() {
       </div>
 
       {/* Right — flow diagram + properties panel */}
-      <div className="flex-1 flex items-start gap-4">
+      <div className="flex-1 flex items-start gap-4 cloudiq-auto-right">
         <Image
           src="/images/home/cloud-iq/flow-diagram.png"
           alt="Workflow Flow Diagram"
           width={418}
           height={590}
+          className="cloudiq-flow-diagram"
         />
         <Image
           src="/images/home/cloud-iq/workflow-properties.png"
           alt="Properties Panel"
           width={294}
           height={413}
+          className="cloudiq-properties-panel"
         />
+      </div>
       </div>
     </section>
     </>

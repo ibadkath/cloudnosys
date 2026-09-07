@@ -1,4 +1,6 @@
 @import "tailwindcss";
+
+/* Basis Grotesque Pro — place font files in /public/fonts/ */
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
 
@@ -15,7 +17,6 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-mono);
-  --animate-marquee: marquee-bg 18s linear infinite;
   --font-heading: var(--font-mono);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
@@ -79,11 +80,6 @@
   30%, 60% {
     background-position: calc(100% + var(--shiny-width)) 0;}}}
 
-@keyframes marquee-bg {
-  from { background-position: 0 0; }
-  to   { background-position: -943px 0; }
-}
-
 @keyframes marquee-left {
   from { transform: translateX(0); }
   to   { transform: translateX(-50%); }
@@ -94,10 +90,8 @@
   to   { transform: translateX(0); }
 }
 
-.logos-strip {
-  background-image: url('/images/home/clients/logos.png');
-  background-repeat: repeat-x;
-  background-size: 943px 129px;
+html {
+  overflow-x: hidden;
 }
 
 body {
@@ -106,11 +100,12 @@ body {
   background-color:#000207;
   color:#ffffff;
   /* font-family: Arial, Helvetica, sans-serif; */
-  font-family: "Archivo", sans-serif;
+  font-family: var(--font-archivo), "Archivo", sans-serif;
+  overflow-x: hidden;
 }
 
 .BodyLabel {
-  font-family: "Archivo", sans-serif;
+  font-family: var(--font-basis-grotesque), "Basis Grotesque Pro", sans-serif;
   font-weight: 400;
   font-style: normal;
   font-size: 14px;
@@ -121,17 +116,27 @@ body {
 }
 
 .HeroHeading {
-  font-family: "Archivo", sans-serif;
-  font-weight: 300;
+  font-family: var(--font-archivo), "Archivo", sans-serif;
   font-style: normal;
-  font-size: 65px;
-  line-height: 67px;
+  font-size: clamp(40px, 8vw, 65px);
+  line-height: clamp(42px, calc(5vw + 26px), 67px);
   letter-spacing: 0%;
   text-transform: capitalize;
 }
 
+@media (max-width: 767px) {
+  .label {
+    font-size: 14px;
+    line-height: 22px;
+  }
+  /* .feature-hero-heading {
+    font-size: 36px;
+    line-height: 42px;
+  } */
+}
+
 .DropdownHeading {
-  font-family: "Archivo", sans-serif;
+  font-family: var(--font-archivo), "Archivo", sans-serif;
   font-weight: 300;
   font-style: normal;
   font-size: 14px;
@@ -142,7 +147,7 @@ body {
 }
 
 .DropdownSubHeading {
-  font-family: "Archivo", sans-serif;
+  font-family: var(--font-basis-grotesque), "Basis Grotesque Pro", sans-serif;
   font-weight: 700;
   font-style: normal;
   font-size: 14px;
@@ -151,7 +156,7 @@ body {
 }
 
 .DropdownPara {
-  font-family: "Archivo", sans-serif;
+  font-family: var(--font-basis-grotesque), "Basis Grotesque Pro", sans-serif;
   font-weight: 300;
   font-style: normal;
   font-size: 10px;
@@ -178,8 +183,8 @@ body {
   overflow: hidden;
 }
 
-.feature-hero-heading {
-  font-family: "Archivo", sans-serif;
+/* .feature-hero-heading {
+  font-family: var(--font-archivo), "Archivo", sans-serif;
   font-weight: 500;
   font-style: normal;
   font-size: 65px;
@@ -188,10 +193,10 @@ body {
   text-align: center;
   text-transform: capitalize;
   color: #060606;
-}
+} */
 
 .feature-card-heading {
-  font-family: "Archivo", sans-serif;
+  font-family: var(--font-archivo), "Archivo", sans-serif;
   font-weight: 600;
   font-size: 18px;
   line-height: 23px;
@@ -202,7 +207,7 @@ body {
 }
 
 .feature-card-para {
-  font-family: "Basis Grotesque Pro", sans-serif;
+  font-family: var(--font-basis-grotesque), "Basis Grotesque Pro", sans-serif;
   font-weight: 300;
   font-size: 14px;
   line-height: 21px;
@@ -212,7 +217,7 @@ body {
 }
 
 .review-card-para {
-  font-family: "Archivo", sans-serif;
+  font-family: var(--font-archivo), "Archivo", sans-serif;
   font-weight: 500;
   font-size: 21px;
   line-height: 29px;
@@ -222,7 +227,7 @@ body {
 }
 
 .label {
-  font-family: "Archivo", sans-serif;
+  font-family: var(--font-basis-grotesque), "Basis Grotesque Pro", sans-serif;
   font-weight: 300;
   font-style: normal;
   font-size: 18px;
@@ -230,8 +235,20 @@ body {
   letter-spacing: 0%;
 }
 
+.blog-card {
+  width: 420px;
+  height: 483px;
+}
+
+@media (min-width: 1920px) {
+  .blog-card {
+    width: 540px;
+    height: 621px;
+  }
+}
+
 .blog-card-para {
-  font-family: "Basis Grotesque Pro", sans-serif;
+  font-family: var(--font-basis-grotesque), "Basis Grotesque Pro", sans-serif;
   font-weight: 400;
   font-size: 14px;
   line-height: 18px;
@@ -240,16 +257,30 @@ body {
 }
 
 .blog-card-text {
-  font-family: "Basis Grotesque Pro", sans-serif;
+  font-family: var(--font-basis-grotesque), "Basis Grotesque Pro", sans-serif;
   font-weight: 500;
   font-size: 20px;
   line-height: 26px;
   letter-spacing: 0%;
   color: #FFFFFF;
+  height: 52px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.blog-card-excerpt {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .footer-heading {
-  font-family: "Basis Grotesque Pro", sans-serif;
+  font-family: var(--font-basis-grotesque), "Basis Grotesque Pro", sans-serif;
   font-weight: 700;
   font-size: 14px;
   line-height: 100%;
@@ -259,7 +290,7 @@ body {
 }
 
 .footer-sub-heading {
-  font-family: "Basis Grotesque Pro", sans-serif;
+  font-family: var(--font-basis-grotesque), "Basis Grotesque Pro", sans-serif;
   font-weight: 400;
   font-size: 14px;
   line-height: 100%;
@@ -268,7 +299,236 @@ body {
   color: #DADADA;
 }
 
-:root {
+/* ── Tablet overrides (768–1023px) ───────────────────────────────────────────
+   CloudIQ's cards use hardcoded desktop pixel widths (525px/1073px) that only
+   had a fluid override below 768px — leaving this tablet range to render the
+   raw desktop widths, which overflow a tablet viewport and get clipped.
+   Reuses the same fluid 100%-width treatment already proven on mobile.      */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .cloudiq-section {
+    padding-left: 32px !important;
+    padding-right: 32px !important;
+  }
+  .cloudiq-cards-row { flex-direction: column !important; }
+  .cloudiq-card      { width: 100% !important; }
+  .cloudiq-row2-card { width: 100% !important; }
+
+  .cloudiq-auto-section {
+    padding-left: 32px !important;
+    padding-right: 32px !important;
+  }
+  .cloudiq-auto-inner {
+    width: 100% !important;
+    flex-direction: column !important;
+    gap: 32px !important;
+  }
+  .cloudiq-auto-left {
+    min-width: 0 !important;
+    max-width: 100% !important;
+  }
+  .cloudiq-auto-right {
+    flex-direction: column !important;
+  }
+  .cloudiq-auto-right img {
+    max-width: 100% !important;
+    height: auto !important;
+  }
+
+  /* Blog carousel card — otherwise reverts to its hardcoded desktop 420px
+     width inside the now-fluid Carousel container, leaving a large empty
+     gap since the card no longer fills the space the carousel measured.
+     (Also fills its column in the tablet 2-up row below.) */
+  .blog-card {
+    width: 100% !important;
+    height: auto !important;
+    aspect-ratio: 1 / 1;
+    margin: 0 auto !important;
+  }
+
+  /* Features cards — 2-per-row grid on tablet, cards fill their grid cell */
+  .features-row1 {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+  .feature-card-tb {
+    height: 280px !important;
+    width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+  .feature-card-tb-wide {
+    height: 320px !important;
+    width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+
+  /* CloudIQ automation — hide the heavy flow images on tablet too */
+  .cloudiq-flow-diagram,
+  .cloudiq-properties-panel {
+    display: none !important;
+  }
+
+  /* Integrations diagram — fixed 900px-wide diagram (icons span local x
+     -83…983, i.e. 1066px) had no tablet scaling, so the far-left/far-right
+     icon columns (Gmail/OpenAI/Teams, Okta/Linear/Firebase) were silently
+     clipped by body's overflow-x-hidden. Same escape-and-scale technique
+     as the mobile override below, just less aggressive: scale 0.68 keeps
+     the full 1066px span within a 768px viewport with margin to spare. */
+  .integrations-diagram-wrapper {
+    position: relative !important;
+    width: 100vw !important;
+    margin-left: 0 !important;
+    height: 354px !important;
+    overflow: hidden !important;
+    margin-top: 0 !important;
+  }
+  .integrations-diagram {
+    position: absolute !important;
+    left: calc(50% - 306px) !important;
+    top: 0 !important;
+    transform: scale(0.68) !important;
+    transform-origin: top left !important;
+    margin-top: 0 !important;
+  }
+
+  /* Footer — the desktop single-row layout (flex-nowrap) needs ~995px of
+     natural content width to avoid shrinking; tablet viewports are narrower,
+     which was squeezing the partner-badges column down to a few px and
+     clipping it against the footer's overflow:hidden. Tighten padding/gap
+     and shrink the logo + partner badges slightly so the same single-row
+     layout as desktop keeps fitting all the way down to 768px. */
+  .footer-row {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+    column-gap: 14px !important;
+  }
+  .footer-logo-col {
+    min-width: 0 !important;
+  }
+  .footer-badge-aws1,
+  .footer-badge-aws2 {
+    width: 52px !important;
+    height: 52px !important;
+  }
+  .footer-badge-gcloud {
+    width: 38px !important;
+    height: 44px !important;
+  }
+  .footer-badge-ms {
+    width: 56px !important;
+    height: 38px !important;
+  }
+  .footer-badge-awssec {
+    width: 88px !important;
+    height: 32px !important;
+  }
+}
+
+/* ── Mobile-only overrides (max 767px) ──────────────────────────────────────
+   These classes are added to components purely for mobile targeting.
+   All existing desktop Tailwind/inline styles are left untouched.          */
+@media (max-width: 767px) {
+
+  /* Global — prevent any element from causing horizontal scroll */
+  img, svg, video, iframe { max-width: 100% !important; }
+
+  /* CloudIQ — main cards section */
+  .cloudiq-section {
+    padding-top: 48px !important;
+    padding-bottom: 48px !important;
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+  .cloudiq-cards-row { flex-direction: column !important; }
+  .cloudiq-card      { width: 100% !important; }
+  .cloudiq-row2-card { width: 100% !important; }
+
+  /* CloudIQ — automation section */
+  .cloudiq-auto-section {
+    padding-top: 40px !important;
+    padding-bottom: 48px !important;
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+  .cloudiq-auto-inner {
+    width: 100% !important;
+    flex-direction: column !important;
+    gap: 32px !important;
+  }
+  .cloudiq-auto-left {
+    min-width: 0 !important;
+    max-width: 100% !important;
+  }
+  .cloudiq-auto-right {
+    flex-direction: column !important;
+  }
+  .cloudiq-auto-right img {
+    max-width: 100% !important;
+    height: auto !important;
+  }
+
+  /* Inventory */
+  .inventory-container {
+    width: 100% !important;
+    display: block !important;
+    border-radius: 12px !important;
+  }
+  .inventory-img {
+    width: 100% !important;
+    height: auto !important;
+  }
+
+  /* Wrap forced line breaks naturally on small screens */
+  .label br { display: none; }
+  .label br.tb\:hidden { display: inline; }
+
+  /* Blog carousel */
+  .blog-carousel::-webkit-scrollbar { display: none; }
+  .blog-carousel { -ms-overflow-style: none; scrollbar-width: none; }
+  .blog-card {
+    width: 90% !important;
+    height: auto !important;
+    aspect-ratio: 1 / 1;
+    margin: 0 auto !important;
+  }
+
+  /* Compliance testimonial carousel */
+  .compliance-carousel::-webkit-scrollbar { display: none; }
+  .compliance-carousel { -ms-overflow-style: none; scrollbar-width: none; }
+
+  /* Integrations diagram — escape parent px-6 padding, then center.
+     scale 0.30: outer icons (cx=-83…983) land ±160px from center → 28px margin each side on 375px screen. */
+  .integrations-diagram-wrapper {
+    position: relative !important;
+    width: 100vw !important;
+    margin-left: 0 !important;
+    height: 155px !important;
+    overflow: hidden !important;
+    margin-top: 16px !important;
+    background: transparent !important;
+    border: none !important;
+    outline: none !important;
+    transform: translateZ(0) !important;
+  }
+  .integrations-ambient-glow { display: none !important; }
+  .integrations-diagram {
+    position: absolute !important;
+    left: calc(50% - 135px) !important;
+    top: 0 !important;
+    transform: scale(0.30) !important;
+    transform-origin: top left !important;
+    margin-top: 0 !important;
+  }
+
+  /* CloudIQ automation — hide the heavy flow images on mobile */
+  .cloudiq-flow-diagram,
+  .cloudiq-properties-panel {
+    display: none !important;
+  }
+}
+
+/* :root {
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
   --card: oklch(1 0 0);
@@ -335,9 +595,9 @@ body {
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
-}
+} */
 
-@layer base {
+/* @layer base {
   * {
     @apply border-border outline-ring/50;
   }
@@ -346,5 +606,42 @@ body {
   }
   html {
     @apply font-mono;
+  }
+} */
+
+@media (max-width: 767px) {
+  h3.blog-card-text {
+    font-size: 18px !important;
+    line-height: 24px !important;
+    height: 48px !important;
+  }
+}
+
+@media (max-width: 767px) {
+  /* Compliance section floating badges — scale down proportionally for mobile */
+  .compliance-badge { max-width: none !important; }
+
+  .compliance-badge-tl,
+  .compliance-badge-tr {
+    width: 54px !important;
+    height: 54px !important;
+    top: -16px !important;
+  }
+  .compliance-badge-tl { left: -20px !important; }
+  .compliance-badge-tr { right: -20px !important; }
+
+  .compliance-badge-ml,
+  .compliance-badge-mr {
+    width: 48px !important;
+    height: 48px !important;
+  }
+  .compliance-badge-ml { left: -20px !important; }
+  .compliance-badge-mr { right: -20px !important; }
+
+  .compliance-badge-bl {
+    width: 48px !important;
+    height: 48px !important;
+    bottom: 40px !important;
+    left: -16px !important;
   }
 }

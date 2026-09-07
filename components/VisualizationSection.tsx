@@ -1,43 +1,79 @@
 import Image from "next/image";
 import CTASection from "@/components/CTASection";
 import { ShineBorder } from "./ui/shine-border";
-import { AnimatedGradientText } from "./ui/animated-gradient-text";
+import ShinyText from "./ShinyText";
 
 export default function VisualizationSection() {
   return (
-    <section className="w-full flex flex-col px-16 py-20 mt-12 relative overflow-hidden">
+    <section className="w-full flex flex-col items-center py-10 md:py-20 mt-6 md:mt-12 relative">
 
-      {/* Figma: left-side atmospheric blue glow */}
-      <div className="pointer-events-none absolute" style={{
-        width: 900, height: 800, left: -250, top: -150, borderRadius: '50%',
-        background: 'radial-gradient(ellipse at 40% 40%, rgba(20,80,255,0.18) 0%, rgba(10,60,220,0.08) 45%, transparent 70%)',
-        filter: 'blur(90px)', zIndex: 0,
-      }} />
+      <div className=" w-full px-4 md:px-0 md:w-[1073px]">
+        <h2 className="HeroHeading relative z-10" style={{ fontWeight: 300 }}>
+          <ShinyText text="Visualize." speed={3} /> <br className="md:hidden" />
+          <ShinyText text="Prioritize." className="font-medium!" speed={3} /> <br className="hidden md:block" />
+          <ShinyText text="Secure." className="font-medium!" speed={3} />
+        </h2>
 
-      <h2 className="HeroHeading relative z-10">
-        <AnimatedGradientText speed={1} style={{ backgroundImage: "linear-gradient(263.99deg, #0C0C0C -5.95%, #FFFFFF 24.91%, #919191 47.69%, #FFFFFF 71.93%, #0C0C0C 107.2%)", backgroundSize: "300% 100%" }}>
-          Visualize. <span style={{ fontWeight: 500 }}>Prioritize.</span><br />
-          <span style={{ fontWeight: 500 }}>Secure.</span>
-        </AnimatedGradientText>
-      </h2>
-
-      <p className="label mt-4 relative z-10">
-        Map your cloud like a living blueprint. Instantly see how resources connect,<br />
-        identify weak links, and trace attack paths before they&apos;re exploited.
-      </p>
-
-      <div className="mt-12 w-full" style={{ position: "relative", overflow: "hidden", borderRadius: 12 }}>
-        <Image
-          src="/images/home/inventory/inventory-topology.png"
-          alt="Inventory Topology Visualization"
-          width={1200}
-          height={700}
-          className="w-full rounded-xl"
-        />
-        <ShineBorder shineColor="#FFFFFF" duration={6} />
+        <p className="label mt-4 relative z-10" style={{ color: '#FFFFFF' }}>
+          Map your cloud like a living blueprint. Instantly see how resources connect, <br className="hidden md:inline" />identify weak links, and trace attack paths before they&apos;re exploited.
+        </p>
       </div>
 
-      <div className="mt-12 -mx-16">
+      <div className="mt-6 md:mt-12 relative w-full px-4 md:px-0 md:w-[1073px]">
+
+        {/* Top-left glow — outside image */}
+        <div className="pointer-events-none absolute hidden md:block" style={{
+          width: 500, height: 400, left: 0, top: 0,
+          transform: 'translate(-15%, -35%)',
+          background: 'radial-gradient(ellipse at 50% 50%, rgba(49,75,206,0.45) 0%, rgba(49,75,206,0.18) 45%, transparent 72%)',
+          filter: 'blur(80px)',
+        }} />
+        {/* Bottom-right lighter glow — outside image */}
+        <div className="pointer-events-none absolute hidden md:block" style={{
+          width: 420, height: 320, right: 0, bottom: 0,
+          transform: 'translate(15%, 35%)',
+          background: 'radial-gradient(ellipse at 50% 50%, rgba(49,75,206,0.22) 0%, rgba(49,75,206,0.08) 50%, transparent 74%)',
+          filter: 'blur(90px)',
+        }} />
+
+        <div style={{ position: "relative", overflow: "hidden", borderRadius: 12 }}>
+          <Image
+            src="/images/home/inventory/inventory-topology.png"
+            alt="Inventory Topology Visualization"
+            width={1200}
+            height={700}
+            className="w-full rounded-xl"
+          />
+          {/* Top-left inner glow */}
+          <div className="pointer-events-none absolute hidden md:block" style={{
+            width: 420, height: 320, left: 0, top: 0,
+            background: 'radial-gradient(ellipse at 0% 0%, rgba(49,75,206,0.35) 0%, rgba(49,75,206,0.12) 50%, transparent 74%)',
+            filter: 'blur(60px)',
+            mixBlendMode: 'screen',
+          }} />
+          {/* Bottom-right inner glow */}
+          <div className="pointer-events-none absolute hidden md:block" style={{
+            width: 340, height: 260, right: 0, bottom: 0,
+            background: 'radial-gradient(ellipse at 100% 100%, rgba(49,75,206,0.18) 0%, rgba(49,75,206,0.06) 55%, transparent 76%)',
+            filter: 'blur(70px)',
+            mixBlendMode: 'screen',
+          }} />
+          <ShineBorder shineColor="#1567FF" duration={6} />
+        </div>
+
+      </div>
+
+      {/* Glow below image bleeding into CTA area */}
+      <div className="pointer-events-none w-full hidden md:block" style={{ position: 'relative', height: 0, overflow: 'visible' }}>
+        <div style={{
+          position: 'absolute', width: 1600, height: 650,
+          left: '50%', top: 120, transform: 'translateX(-50%)',
+          background: 'radial-gradient(ellipse at center top, rgba(49,75,206,0.28) 0%, rgba(49,75,206,0.10) 50%, transparent 76%)',
+          filter: 'blur(100px)',
+        }} />
+      </div>
+
+      <div className="mt-12 w-full">
         <CTASection />
       </div>
 

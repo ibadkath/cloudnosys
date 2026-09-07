@@ -1,4 +1,5 @@
 import { ShineBorder } from "./ui/shine-border";
+import ShinyText from "./ShinyText";
 
 export default function CTASection() {
   const g = 18;
@@ -67,17 +68,9 @@ export default function CTASection() {
   const colors = ['#ffffff', '#ffffff', '#ffffff', '#ffffff'];
 
   return (
-    <section className="w-full relative flex flex-col items-center justify-center py-28 overflow-hidden">
+    <section className="w-full relative flex flex-col items-center justify-center pt-12 pb-28 md:py-28 xl:py-36 2xl:py-44 overflow-hidden">
 
-      {/* Figma: teal center glow */}
-      <div className="pointer-events-none absolute" style={{
-        width: 700, height: 420, left: '50%', top: '50%',
-        transform: 'translate(-50%, -50%)',
-        background: 'radial-gradient(ellipse at center, rgba(0,220,160,0.16) 0%, rgba(0,200,180,0.07) 50%, transparent 72%)',
-        filter: 'blur(65px)', zIndex: 0,
-      }} />
-
-      <svg
+<svg
         className="absolute inset-0 w-full h-full pointer-events-none"
         viewBox="0 0 1440 450"
         preserveAspectRatio="xMidYMid slice"
@@ -91,13 +84,14 @@ export default function CTASection() {
         ))}
       </svg>
 
-      <div className="relative z-10 flex flex-col items-center text-center pb-8">
-        <h2 className="HeroHeading text-center">
-          Secure Your Cloud<br />
-          <span>Start Free Today</span>
+      <div className="relative z-10 flex flex-col items-center text-center pb-16">
+        <h2 className="HeroHeading text-center" style={{ fontWeight: 300 }}>
+          <ShinyText text="Secure Your Cloud" speed={3} /> <br />
+          <ShinyText text="Start Free Today" className="font-extralight!" speed={3} />
         </h2>
-        <p className="label mt-4 text-center">
-          Experience full access to Cloudnosys for 14 days.
+        <p className="label mt-4 text-center" style={{ color: '#FFFFFF' }}>
+          Experience full access to <br className="tb:hidden" />
+          Cloudnosys for 14 days.
         </p>
         <button className="StartButton mt-8">
           <ShineBorder shineColor="#1567FF" duration={6} />
