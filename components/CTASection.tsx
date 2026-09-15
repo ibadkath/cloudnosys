@@ -76,10 +76,27 @@ export default function CTASection() {
         preserveAspectRatio="xMidYMid slice"
         xmlns="http://www.w3.org/2000/svg"
       >
+        <defs>
+          <linearGradient id="cta-line-shine" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0" stopColor="#ffffff" stopOpacity="0" />
+            <stop offset="0.48" stopColor="#ffffff" stopOpacity="0" />
+            <stop offset="0.5" stopColor="#ffffff" />
+            <stop offset="0.52" stopColor="#ffffff" stopOpacity="0" />
+            <stop offset="1" stopColor="#ffffff" stopOpacity="0" />
+            <animateTransform
+              attributeName="gradientTransform"
+              type="translate"
+              values="-1 0;1 0;-1 0"
+              dur="10s"
+              repeatCount="indefinite"
+            />
+          </linearGradient>
+        </defs>
         {([0, 1, 2, 3] as const).map(n => (
           <g key={n}>
             {/* <path d={smoothD(RIGHT, n)} fill="none" stroke={colors[n]} strokeWidth="0.2" /> */}
             <path d={smoothD(LEFT, n, LEFT_SMOOTH)} fill="none" stroke={colors[n]} strokeWidth="0.2" />
+            <path d={smoothD(LEFT, n, LEFT_SMOOTH)} fill="none" stroke="url(#cta-line-shine)" strokeWidth="0.2" />
           </g>
         ))}
       </svg>
