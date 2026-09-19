@@ -69,7 +69,7 @@ export default function IntegrationsSection() {
   const RN = 38;
 
   return (
-    <section className="w-full flex flex-col items-center py-20"
+    <section className="w-full flex flex-col items-center pt-20 pb-32 md:pb-40"
       // style={{ backgroundColor: '#060606', color: '#ffffff' }}
       >
 
@@ -189,14 +189,11 @@ export default function IntegrationsSection() {
 
       </div>{/* end padded wrapper */}
 
-      {/* Full-width line through button â€” direct child of section (no px padding) */}
       <div className="w-full flex items-center justify-center mt-8">
-        <div className="hidden md:block" style={{ flex: 1, height: 1, background: 'rgba(255,255,255,0.15)' }} />
         <button className="StartButton" style={{ flexShrink: 0 }}>
           <ShineBorder shineColor="#1567FF" duration={6} />
           START FREE TRIAL
         </button>
-        <div className="hidden md:block" style={{ flex: 1, height: 1, background: 'rgba(255,255,255,0.15)' }} />
       </div>
     </section>
   );
