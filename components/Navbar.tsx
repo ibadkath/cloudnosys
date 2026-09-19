@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import { ShineBorder } from "./ui/shine-border";
+import { subscribeToLenisScroll } from "./SmoothScroll";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -23,6 +24,7 @@ export default function Navbar() {
   const [activeItem, setActiveItem] = useState<string>("Playbooks");
   const [dropdownLeft, setDropdownLeft] = useState(0);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [isHidden, setIsHidden] = useState(false);
   const navRef = useRef<HTMLElement>(null);
   const platformRef = useRef<HTMLButtonElement>(null);
 
@@ -34,8 +36,29 @@ export default function Navbar() {
     }
   }, [openDropdown]);
 
+  useEffect(() => {
+    const unsubscribe = subscribeToLenisScroll(({ direction, scroll }) => {
+      if (scroll <= 10 || direction < 0) {
+        setIsHidden(false);
+      } else if (direction > 0) {
+        setIsHidden(true);
+      }
+
+    });
+
+    return () => {
+      unsubscribe();
+    };
+  }, []);
+
   return (
-    <nav ref={navRef} className="relative w-full z-50" onMouseLeave={() => setOpenDropdown(null)}>
+    <>
+      <div className="h-16 md:h-20" aria-hidden="true" />
+      <nav
+        ref={navRef}
+        className={`fixed top-0 left-0 w-full z-50 border-b border-white/10 bg-[#000207]/55 shadow-[0_8px_30px_rgba(0,0,0,0.18)] backdrop-blur-xl transition-transform duration-300 ease-out ${isHidden ? "-translate-y-full" : "translate-y-0"}`}
+        onMouseLeave={() => setOpenDropdown(null)}
+      >
       <div className="w-full px-4 md:pl-16 md:pr-16 flex items-center justify-between h-16 md:h-20">
 
         {/* Logo */}
@@ -148,7 +171,8 @@ export default function Navbar() {
           </div>
         </div>
       )}
-    </nav>
+      </nav>
+    </>
   );
 }
 
