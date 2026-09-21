@@ -8,7 +8,6 @@ import ComplianceSection from "@/components/ComplianceSection";
 import IntegrationsSection from "@/components/IntegrationsSection";
 import BlogsSection from "@/components/BlogsSection";
 import ScrollToBlogsOnFlag from "@/components/ScrollToBlogsOnFlag";
-import FadeSection from "@/components/FadeSection";
 import { getBlogPosts } from "@/lib/strapi";
 
 export default async function Home() {
@@ -17,15 +16,24 @@ export default async function Home() {
   return (
     <main className="flex flex-1 flex-col">
       <ScrollToBlogsOnFlag />
-      <FadeSection><HeroSection /></FadeSection>
-      
-         <FadeSection><InventorySection /></FadeSection> 
-          <FadeSection><TrustedSection /></FadeSection>
-        <FadeSection><FeaturesSection /></FadeSection>
-      <FadeSection><VisualizationSection /></FadeSection>
-      <FadeSection><CloudIQSection /></FadeSection>
-      <FadeSection><ComplianceSection /></FadeSection>
-      <FadeSection><IntegrationsSection /></FadeSection>
+      <HeroSection />
+
+      <div className="relative">
+        <section
+          className="sticky top-0 z-10 flex min-h-screen flex-col justify-center"
+          style={{ top: "min(0px, calc(100vh - 946px))" }}
+        >
+          <InventorySection />
+          <TrustedSection />
+        </section>
+        <div className="relative z-20 min-h-screen">
+          <FeaturesSection />
+        </div>
+      </div>
+      <VisualizationSection />
+      <CloudIQSection />
+      <ComplianceSection />
+      <IntegrationsSection />
       {/* <BlogsSection blogs={posts} /> */}
 
       

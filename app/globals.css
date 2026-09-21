@@ -91,7 +91,7 @@
 }
 
 html {
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 .fade-section {
@@ -138,7 +138,7 @@ body {
   color:#ffffff;
   /* font-family: Arial, Helvetica, sans-serif; */
   font-family: var(--font-archivo), "Archivo", sans-serif;
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 .BodyLabel {

@@ -73,7 +73,6 @@ export default function Navbar() {
               key={item}
               ref={item === "Platform" ? platformRef : undefined}
               className="BodyLabel flex items-center gap-1 hover:text-white transition-colors py-4"
-              onMouseEnter={() => setOpenDropdown(item === "Platform" ? "Platform" : null)}
             >
               {item}
             </button>

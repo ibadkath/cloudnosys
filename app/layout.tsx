@@ -51,7 +51,7 @@ export default function RootLayout({
       lang="en"
       className={cn("antialiased", geistSans.variable, geistMono.variable, "font-mono", jetbrainsMono.variable, archivo.variable, basisGrotesque.variable)}
     >
-      <body className="min-h-screen flex flex-col overflow-x-hidden">
+      <body className="min-h-screen flex flex-col overflow-x-clip">
         <SmoothScroll>
           {/* Right glow */}
           <div
