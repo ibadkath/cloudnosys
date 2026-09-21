@@ -5,6 +5,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import SmoothScroll from "@/components/SmoothScroll";
+import Preloader from "@/components/Preloader";
 import { cn } from "@/lib/utils";
 
 const jetbrainsMono = JetBrains_Mono({subsets:['latin'],variable:'--font-mono'});
@@ -52,6 +53,7 @@ export default function RootLayout({
       className={cn("antialiased", geistSans.variable, geistMono.variable, "font-mono", jetbrainsMono.variable, archivo.variable, basisGrotesque.variable)}
     >
       <body className="min-h-screen flex flex-col overflow-x-clip">
+        <Preloader />
         <SmoothScroll>
           {/* Right glow */}
           <div

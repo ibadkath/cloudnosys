@@ -1,11 +1,20 @@
+"use client";
+
 import Image from "next/image";
+import { motion } from "motion/react";
 import CTASection from "@/components/CTASection";
 import { ShineBorder } from "./ui/shine-border";
 import ShinyText from "./ShinyText";
 
 export default function VisualizationSection() {
   return (
-    <section className="w-full flex flex-col items-center py-10 md:py-20 mt-6 md:mt-12 relative">
+    <motion.section
+      className="w-full flex flex-col items-center py-10 md:py-20 mt-6 md:mt-12 relative"
+      initial={{ opacity: 0, y: 28 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.2 }}
+      transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+    >
 
       <div className=" w-full px-4 md:px-0 md:w-[1073px]">
         <h2 className="HeroHeading relative z-10" style={{ fontWeight: 300 }}>
@@ -19,7 +28,13 @@ export default function VisualizationSection() {
         </p>
       </div>
 
-      <div className="mt-6 md:mt-12 relative w-full px-4 md:px-0 md:w-[1073px]">
+      <motion.div
+        className="mt-6 md:mt-12 relative w-full px-4 md:px-0 md:w-[1073px]"
+        initial={{ opacity: 0, y: 18 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.25 }}
+        transition={{ duration: 0.7, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}
+      >
 
         {/* Top-left glow — outside image */}
         <div className="pointer-events-none absolute hidden md:block" style={{
@@ -36,7 +51,11 @@ export default function VisualizationSection() {
           filter: 'blur(90px)',
         }} />
 
-        <div style={{ position: "relative", overflow: "hidden", borderRadius: 12 }}>
+        <motion.div
+          style={{ position: "relative", overflow: "hidden", borderRadius: 12 }}
+          whileHover={{ y: -4 }}
+          transition={{ duration: 0.25, ease: "easeOut" }}
+        >
           <Image
             src="/images/home/inventory/inventory-topology.png"
             alt="Inventory Topology Visualization"
@@ -59,9 +78,9 @@ export default function VisualizationSection() {
             mixBlendMode: 'screen',
           }} />
           <ShineBorder shineColor="#1567FF" duration={6} />
-        </div>
+        </motion.div>
 
-      </div>
+      </motion.div>
 
       {/* Glow below image bleeding into CTA area */}
       <div className="pointer-events-none w-full hidden md:block" style={{ position: 'relative', height: 0, overflow: 'visible' }}>
@@ -77,6 +96,6 @@ export default function VisualizationSection() {
         <CTASection />
       </div>
 
-    </section>
+    </motion.section>
   );
 }

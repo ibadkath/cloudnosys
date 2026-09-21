@@ -1,9 +1,19 @@
+"use client";
+
 import Image from "next/image";
+import { motion } from "motion/react";
 import { ShineBorder } from "./ui/shine-border";
 
 export default function InventorySection() {
   return (
-    <section className="w-full flex justify-center mt-0 px-4 md:px-0" style={{ position: 'relative' }}>
+    <motion.section
+      className="w-full flex justify-center mt-0 px-4 md:px-0"
+      style={{ position: 'relative' }}
+      initial={{ opacity: 0, y: 24 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.3 }}
+      transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+    >
 
       {/* Figma: blue glow above inventory image */}
       <div className="pointer-events-none hidden md:block" style={{
@@ -24,7 +34,12 @@ export default function InventorySection() {
         borderRadius: '50%',
       }} />
 
-      <div className="inventory-container" style={{ position: "relative", overflow: "hidden", borderRadius: 12, display: "inline-block" }}>
+      <motion.div
+        className="inventory-container"
+        style={{ position: "relative", overflow: "hidden", borderRadius: 12, display: "inline-block" }}
+        whileHover={{ y: -4, scale: 1.005 }}
+        transition={{ duration: 0.25, ease: "easeOut" }}
+      >
         <Image
           src="/images/home/inventory/inventory.png"
           alt="Inventory"
@@ -34,7 +49,7 @@ export default function InventorySection() {
           className="inventory-img"
         />
         <ShineBorder shineColor="#1567FF" duration={6} />
-      </div>
-    </section>
+      </motion.div>
+    </motion.section>
   );
 }
