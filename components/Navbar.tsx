@@ -180,8 +180,8 @@ function UserIcon() { return <Image src="/images/icons/signup.png" alt="sign up"
 function CloudLogo() {
   return (
     <>
-      <Image src="/images/icons/Home.png" alt="Cloudnosys" width={110} height={27} className="md:hidden" />
-      <Image src="/images/icons/Home.png" alt="Cloudnosys" width={149} height={37} className="hidden md:block" />
+      <Image src="/images/icons/Home.png" alt="Cloudnosys" width={110} height={27} loading="eager" style={{ width: "auto", height: "auto" }} className="md:hidden" />
+      <Image src="/images/icons/Home.png" alt="Cloudnosys" width={149} height={37} loading="eager" style={{ width: "auto", height: "auto" }} className="hidden md:block" />
     </>
   );
 }

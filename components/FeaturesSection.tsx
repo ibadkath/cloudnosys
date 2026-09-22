@@ -47,7 +47,7 @@ export default function FeaturesSection() {
           transition={{ duration: 0.25, ease: "easeOut" }}
         >
           <div className="flex-1 min-h-[120px] relative overflow-hidden" style={{ boxShadow: "inset -1px -1px 23.5px 0px #000000F2" }}>
-            <Image src="/images/home/features/Clouds.png" alt="Secure Every Cloud" fill className="object-cover object-top" />
+            <Image src="/images/home/features/Clouds.png" alt="Secure Every Cloud" fill sizes="(max-width: 767px) 100vw, 33vw" className="object-cover object-top" />
             <div className="absolute inset-0 bg-linear-to-b from-transparent via-transparent to-[#070707]" />
             <div className="absolute inset-0 bg-linear-to-r from-transparent via-transparent to-[#070707]" />
           </div>
@@ -81,8 +81,8 @@ export default function FeaturesSection() {
           transition={{ duration: 0.25, ease: "easeOut" }}
         >
           <div className="flex-1 relative overflow-hidden flex gap-x-3">
-            <Image src="/images/home/features/workflow.png" alt="Workflow" width={231} height={232} className="" />
-            <Image src="/images/home/features/playbook-node.png" alt="Playbook Nodes" width={186} height={255} className="translate-y-10" />
+            <Image src="/images/home/features/workflow.png" alt="Workflow" width={231} height={232} style={{ width: "auto", height: "auto" }} className="" />
+            <Image src="/images/home/features/playbook-node.png" alt="Playbook Nodes" width={186} height={255} style={{ width: "auto", height: "auto" }} className="translate-y-10" />
             <div className="absolute inset-0 bg-linear-to-b from-transparent from-60% to-[#070707]" />
             <div className="absolute inset-0 bg-linear-to-r from-transparent from-70% to-[#070707]" />
             <div className="absolute inset-0 bg-linear-to-l from-transparent from-70% to-[#070707]" />
@@ -150,7 +150,7 @@ export default function FeaturesSection() {
           transition={{ duration: 0.25, ease: "easeOut" }}
         >
           <div className="flex-1 relative overflow-hidden flex justify-center">
-            <Image src="/images/home/features/dashboard.png" alt="Dashboard" width={654} height={321} className="translate-y-4" />
+            <Image src="/images/home/features/dashboard.png" alt="Dashboard" width={654} height={321} style={{ width: "auto", height: "auto" }} className="translate-y-4" />
             <div className="absolute inset-0 bg-linear-to-b from-transparent from-60% to-[#070707]" />
           </div>
           <div className="px-5 py-4 text-center">

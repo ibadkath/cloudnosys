@@ -7,6 +7,7 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
+  --radius: 10px;
   --breakpoint-sm: 426px;
   --breakpoint-tb: 768px;
   --breakpoint-md: 1024px;
@@ -499,6 +500,7 @@ body {
 
   /* Global — prevent any element from causing horizontal scroll */
   img, svg, video, iframe { max-width: 100% !important; }
+  img { height: auto !important; }
 
   /* CloudIQ — main cards section */
   .cloudiq-section {

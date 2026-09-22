@@ -58,6 +58,7 @@ export default function CloudIQSection() {
                   alt="Attack Path Analysis"
                   width={442}
                   height={584}
+                  style={{ width: "auto", height: "auto" }}
                   className="object-cover object-top translate-y-10"
                 />
                 <div className="absolute bottom-0 left-0 right-0 h-24 bg-linear-to-t from-[#070707] to-transparent" />
@@ -84,12 +85,14 @@ export default function CloudIQSection() {
                   alt="Compliance Score"
                   width={496}
                   height={188}
+                  style={{ width: "auto", height: "auto" }}
                 />
                 <Image
                   src="/images/home/cloud-iq/compliance-score.png"
                   alt="Compliance Score"
                   width={496}
                   height={188}
+                  style={{ width: "auto", height: "auto" }}
                 />
                 <div className="absolute bottom-0 left-0 right-0 h-24 bg-linear-to-t from-[#070707] to-transparent" />
                 <div className="absolute top-0 left-0 right-0 h-12 bg-linear-to-b from-[#070707] to-transparent" />
@@ -117,6 +120,7 @@ export default function CloudIQSection() {
                 alt="Threat Visualization"
                 width={779}
                 height={530}
+                style={{ width: "auto", height: "auto" }}
                 className="object-cover object-top translate-y-12"
               />
               <div className="absolute bottom-0 left-0 right-0 h-24 bg-linear-to-t from-[#070707] to-transparent" />
@@ -169,13 +173,18 @@ export default function CloudIQSection() {
               height={590}
               className="cloudiq-flow-diagram"
             />
-            <Image
-              src="/images/home/cloud-iq/workflow-properties.png"
-              alt="Properties Panel"
-              width={294}
-              height={413}
-              className="cloudiq-properties-panel"
-            />
+            <div
+              className="relative shrink-0 cloudiq-properties-panel"
+              style={{ width: 294, height: 413, position: "relative" }}
+            >
+              <Image
+                src="/images/home/cloud-iq/workflow-properties.png"
+                alt="Properties Panel"
+                fill
+                sizes="294px"
+                className="object-contain"
+              />
+            </div>
           </div>
         </div>
       </section>

@@ -5,6 +5,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import SmoothScroll from "@/components/SmoothScroll";
+
 import Preloader from "@/components/Preloader";
 import { cn } from "@/lib/utils";
 
