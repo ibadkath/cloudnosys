@@ -61,6 +61,7 @@ export default function VisualizationSection() {
             alt="Inventory Topology Visualization"
             width={1200}
             height={700}
+            loading="eager"
             className="w-full rounded-xl"
           />
           {/* Top-left inner glow */}
