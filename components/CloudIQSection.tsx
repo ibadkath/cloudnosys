@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { motion } from "motion/react";
+import { TextAnimate } from "./ui/text-animate";
 
 export default function CloudIQSection() {
   return (
@@ -26,16 +27,15 @@ export default function CloudIQSection() {
           <br className="hidden tb:block" /> <span className="whitespace-nowrap tb:whitespace-normal">Your</span> <span style={{ fontWeight: 500 }}>AI Security Agent</span>
         </motion.h2>
 
-        <motion.p
+        <TextAnimate
+          as="p"
+          by="word"
           className="label mt-4 text-center"
           style={{ color: '#060606' }}
-          initial={{ opacity: 0, y: 18 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.6, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}
+          delay={0.12}
         >
-          Whether you&apos;re in security, compliance, or ops our dashboards deliver tailored,<br className="hidden md:inline" /> real-time insights that cut through noise and drive action
-        </motion.p>
+          Whether you&apos;re in security, compliance, or ops our dashboards deliver tailored, real-time insights that cut through noise and drive action
+        </TextAnimate>
 
         <div className="mt-12 flex flex-col" style={{ gap: 23 }}>
           <motion.div
@@ -149,11 +149,14 @@ export default function CloudIQSection() {
                 <span style={{ fontWeight: 500 }}>Own</span>.
               </span>
             </h2>
-            <p className="label mt-4" style={{ color: '#060606' }}>
-              Trigger fast, policy-based remediation using prebuilt workflows.
-              Integrate with tools like JIRA, AWS GuardDuty, and GCP to automate
-              your incident response.
-            </p>
+            <TextAnimate
+              as="p"
+              by="word"
+              className="label mt-4"
+              style={{ color: '#060606' }}
+            >
+              Trigger fast, policy-based remediation using prebuilt workflows. Integrate with tools like JIRA, AWS GuardDuty, and GCP to automate your incident response.
+            </TextAnimate>
             <div className="mt-8">
               <Image
                 src="/images/home/cloud-iq/workflow-node-list.png"
